@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+html, body {
+    height: 100vh;
+    width: 100%;
+}
+main {
+    position: relative;
+    width: 100%;
+}
+main::before {
+    content: "";
+    margin-top: -2rem;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: calc(100vh + 2.5rem);
+    background-image: url(static/images/baking.jpg);
+    background-size: cover;
+    background-position: center;
+    filter: blur(1px);
+}
+#splash_content {
+    position: relative;
+    width: 90%;
+    margin: auto;
+}
+
+@media (max-width: 500px) {
+    main::before {
+        height: calc(100% + 2.5rem);
+    }
+}
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div id="splash_content">
+        <h2>Your best friend for baking.</h2>
+        <p>Don't you hate it when you find a recipe that you love the look of but all the units need converting?</p>
+        <p>How about when you're looking to make a recipe for a party or an intimate dinner and all of the recipes you find are for the wrong number of people?</p>
+        <p>That's where BakingBuddy comes in.</p>
+        <p>With BakingBuddy you can copy in your recipe and scale it up or down for the exact number of people you need to serve.</p>
+        <p>You can also plug in the ingredients in your recipe and have them converted to the units of your preference.</p>
+        <p>No more constantly searching for how to convert various cup measures into grams, you can do it all in one place.</p>
+        <p>BakingBuddy will save each of your ingredients so you can then copy them into the measurement converter to increase or decrease the servings in the weights you're used to using.</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}Servings Calculator{% endblock %}
+
+{% block body %}
+    <h2>Servings Calculator</h2>
+    <p>Found a recipe you love but it serves too many people?<br>Got a crowd coming over tonight and need to know how much food to buy?<br>
+    With our servings calculator that's no problem. Just copy your recipe into the box below, tell us how many people your recipe usually serves and how many you need to cater for. We'll do the rest.</p>
+    <p>In order for the programme to run correctly you'll need to convert any fractions to decimals, Thanks!<br>You can find the most common fractions by clicking the button below.</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fraction-modal">Fraction conversions</button>
+
+    <div class="modal fade fraction-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Common Fraction Conversions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class=" table table-striped table-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">Fraction</th>
+                                <th scope="col">Decimal</th>
+                                <th scope="col">Fraction</th>
+                                <th scope="col">Decimal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1/8</td>
+                                <td>0.125</td>
+                                <td>1/4</td>
+                                <td>0.25</td>
+                            </tr>
+                            <tr>
+                                <td>1/3</td>
+                                <td>0.33</td>
+                                <td>3/8</td>
+                                <td>0.375</td>
+                            </tr>
+                            <tr>
+                                <td>1/2</td>
+                                <td>0.5</td>
+                                <td>5/8</td>
+                                <td>0.625</td>
+                            </tr>
+                            <tr>
+                                <td>2/3</td>
+                                <td>0.66</td>
+                                <td>3/4</td>
+                                <td>0.75</td>
+                            </tr>
+                            <tr>
+                                <td>7/8</td>
+                                <td>0.875</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <form action="/recipe" method="POST">
+        <div class="form-group">
+            <textarea name="recipe" class="form-control" id="recipe" placeholder="Paste your recipe in here to make the magic work!" rows="10"></textarea>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label class="form-label" for="ini-serve">Recipe servings?</label>
+                <input class="form-input" type="number" name="ini-serve" id="ini-serve">
+              </div>
+              <div class="form-group col">
+                <label class="form-label" for="final-serve">Required servings?</label>
+                <input class="form-input" type="number" name="final-serve" id="final-serve">
+            </div>
+        </div>
+        <input name="submit" class="btn btn-primary" type="submit">
+    </form>
+{% endblock %}

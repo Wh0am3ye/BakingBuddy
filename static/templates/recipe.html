@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}Recipe{% endblock %}
+
+{% block body %}
+    <h2>Here's your updated ingredients list! Happy Baking!</h2>
+    <ul>
+        {% for i in ingredients %}
+            <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

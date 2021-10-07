@@ -1,0 +1,136 @@
+{% extends "layout.html" %}
+
+{% block title %}Measurement Converter{% endblock %}
+
+{% block body %}
+    <h2>Measurement Converter</h2>
+    <p>Need to convert from imperial to metric or the other way around, look no further.<br>Use the below tool to make all of your conversions for your perfect bake.<br>You can then copy them into the servings calculator if you need to increase or decrease the recipe.</p>
+    <p>In order for the programme to run correctly you'll need to convert any fractions to decimals, Thanks!<br>You can find the most common fractions by clicking the button below.</p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".fraction-modal">Fraction conversions</button>
+
+    <div class="modal fade fraction-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Common Fraction Conversions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table-striped table-center">
+                        <thead>
+                            <tr>
+                                <th>Fraction</th>
+                                <th>Decimal</th>
+                                <th>Fraction</th>
+                                <th>Decimal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1/8</td>
+                                <td>0.125</td>
+                                <td>1/6</td>
+                                <td>0.167</td>
+                            </tr>
+                            <tr>
+                                <td>1/4</td>
+                                <td>0.25</td>
+                                <td>1/3</td>
+                                <td>0.333</td>
+                            </tr>
+                            <tr>
+                                <td>3/8</td>
+                                <td>0.375</td>
+                                <td>1/2</td>
+                                <td>0.5</td>
+                            </tr>
+                            <tr>
+                                <td>5/8</td>
+                                <td>0.625</td>
+                                <td>2/3</td>
+                                <td>0.667</td>
+                            </tr>
+                            <tr>
+                                <td>3/4</td>
+                                <td>0.75</td>
+                                <td>7/8</td>
+                                <td>0.875</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <div class="alert alert-warning" role="alert">
+            You can't convert between those units, please try again.
+        </div>
+        <form action="/converted" method="POST">
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label class="form-label" for="measure-value">NUMBER:</label>
+                    <input type="number" step="any" min="0" name="measure-value" class="form-control" id="measure-value">
+                </div>
+                <div class="form-group col-sm">
+                    <label class="form-label" for="fr-unit">FROM:</label>
+                    <select class="form-control" name="fr-unit" id="fr-unit">
+                        <option value="fr-pounds">pounds</option>
+                        <option value="fr-ounces">ounces</option>
+                        <option value="fr-cups">cups</option>
+                        <option value="fr-fluid-ounces">fluid ounces</option>
+                        <option value="fr-grams">grams</option>
+                        <option value="fr-milliliters">milliliters</option>
+                    </select>
+                </div>
+                <div class="form-group col-sm">
+                    <label class="form-label" for="to-unit">TO:</label>
+                    <select class="form-control" name="to-unit" id="to-unit">
+                        <option value="to-grams">grams</option>
+                        <option value="to-milliliters">milliliters</option>
+                        <option value="to-pounds">pounds</option>
+                        <option value="to-ounces">ounces</option>
+                        <option value="to-cups">cups</option>
+                        <option value="to-fluid-ounces">fluid ounces</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col" id="ingredientList">
+                    <label class="form-label" for="ingredients">INGREDIENT:</label>
+                    <select class="form-control" name="ingredients" id="ingredients">
+                        <option value="brown-sugar">Brown Sugar</option>
+                        <option value="butter">Butter</option>
+                        <option value="castor-sugar">Castor Sugar</option>
+                        <option value="chocolate">Chocolate</option>
+                        <option value="cocoa">Cocoa</option>
+                        <option value="demerara-sugar">Demerara Sugar</option>
+                        <option value="flour">Flour</option>
+                        <option value="granulate-sugar">Granulated Sugar</option>
+                        <option value="ground-almonds">Ground Almonds</option>
+                        <option value="milk">Milk</option>
+                        <option value="oats">Oats</option>
+                        <option value="oil">Oil</option>
+                        <option value="raisins">Raisins</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
+            </div>
+            <input type="submit" name="submit" class="btn btn-primary" id="submit">
+        </form>
+    </div>
+    <br>
+    <h3>Your recipe:</h3>
+        <ul id="user-recipe">
+            {% for i in converted_values %}
+                <li>{{ i }}</li>
+            {% endfor %}
+        </ul>
+{% endblock %}

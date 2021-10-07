@@ -1,0 +1,24 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title> Basic JavaScript </title>
+        <script type = "text/javascript"> 
+            function Copier() {
+                var firstWord = document.getElementById("Word1").value;
+                var box = document.getElementById('display');
+                var p = document.createElement("li"); //create p tag
+                p.appendChild(document.createTextNode("You entered:" + firstWord));
+                box.appendChild(p); //add p tag to div 
+            }
+        </script>
+    </head>
+    <body>
+        Word Number 1: 
+        <input type="text"  id="Word1" > 
+        <br>
+        <button onclick = "Copier()">Copy Text Box 1</button>
+        <br>
+        Your recipe:
+        <ul id="display"></ul>
+    </body>
+</html>
